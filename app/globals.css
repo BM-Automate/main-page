@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0d1117;
+  --foreground: #f3f4f6;
 }
 
 @theme inline {
@@ -12,15 +12,50 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+html {
+  scroll-behavior: smooth;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
   }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.animate-marquee {
+  animation: marquee 28s linear infinite;
+}
+.animate-marquee:hover {
+  animation-play-state: paused;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* react-international-phone — blend into our white pill inputs.
+   Use the library's own CSS variables so the flag button and the
+   text input always share the same height/radius/border. */
+.react-international-phone-input-container {
+  --react-international-phone-height: 46px;
+  --react-international-phone-border-radius: 0.5rem;
+  --react-international-phone-border-color: rgba(0, 0, 0, 0.15);
+  --react-international-phone-background-color: #ffffff;
+  --react-international-phone-text-color: #171717;
+  --react-international-phone-font-size: 15px;
+  --react-international-phone-country-selector-background-color-hover: #f2f2f2;
+  width: 100%;
+}
+.react-international-phone-input {
+  flex: 1;
+  width: 100%;
+}
+.react-international-phone-country-selector-dropdown {
+  --react-international-phone-dropdown-item-height: 34px;
+  --react-international-phone-selected-dropdown-item-background-color: #f2f2f2;
+  max-height: 220px;
+  width: 280px;
 }
