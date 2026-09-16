@@ -9,6 +9,7 @@ const projects = [
     desc: "A virtual classroom that reads the room — on-device emotion AI turns live video into real-time engagement signals, so instructors always know who's tuning out. No video ever leaves the device.",
     metric: "82% avg engagement",
     image: "/work/digital-classroom-insights.png",
+    alt: "Digital Classroom Insights dashboard showing real-time student engagement analytics from on-device emotion AI",
     aspect: "1749/604",
     tech: ["Python", "TensorFlow.js", "WebRTC", "Custom ML Model"],
     link: "https://www.dcistudents.app/",
@@ -18,6 +19,7 @@ const projects = [
     desc: "E-commerce storefront for a custom furniture brand — doors, interiors, wall paneling and shelving, built to convert. A Node.js and MongoDB service handles custom quote requests and live inventory sync behind the Shopify storefront, with SSL encryption and PCI-compliant checkout throughout.",
     metric: "Live storefront",
     image: "/work/woodsnery.png",
+    alt: "Woodsnery e-commerce storefront for custom doors, interiors and wall paneling",
     aspect: "1656/757",
     tech: ["Shopify", "Liquid", "Node.js", "MongoDB", "JavaScript"],
     link: "https://www.woodnery.store",
@@ -27,6 +29,7 @@ const projects = [
     desc: "A dynamic, AI-powered admin panel generator that instantly builds a full-featured management dashboard for any business — schools, colleges or e-commerce stores. Just describe what you need and the system generates custom fields, categories and CRUD operations on its own. We also build fully custom, manually-coded admin panels for teams that want complete control.",
     metric: "Any business, instantly",
     image: "/work/ai-admin-panel-v2.png",
+    alt: "AI Admin Panel Builder interface generating a custom business management dashboard",
     aspect: "1858/792",
     tech: ["Node.js", "Express", "MongoDB", "React", "JWT", "Redis"],
     link: null,
@@ -68,7 +71,7 @@ export default function Work() {
                   >
                     <Image
                       src={p.image}
-                      alt={p.title}
+                      alt={p.alt}
                       fill
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                       className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"

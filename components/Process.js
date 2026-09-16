@@ -162,6 +162,7 @@ export default function Process() {
             <div className="relative mb-6 h-[220px] overflow-hidden rounded-xl border border-white/10 bg-[#0d1117] sm:h-[280px]">
               <Image
                 src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1200&q=70&auto=format&fit=crop"
+                // Decorative background under gradient overlays — empty alt is intentional.
                 alt=""
                 fill
                 sizes="(max-width: 1024px) 100vw, 700px"

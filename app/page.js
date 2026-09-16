@@ -9,6 +9,28 @@ import Process from "@/components/Process";
 import Testimonials from "@/components/Testimonials";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import { siteName, homeTitle, homeDescription } from "@/lib/site";
+
+export const metadata = {
+  title: { absolute: homeTitle },
+  description: homeDescription,
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    siteName,
+    locale: "en_US",
+    url: "/",
+    title: homeTitle,
+    description: homeDescription,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: homeTitle,
+    description: homeDescription,
+  },
+};
 
 export default function Home() {
   return (

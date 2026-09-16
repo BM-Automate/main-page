@@ -1,6 +1,8 @@
 import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
 import "react-international-phone/style.css";
 import "./globals.css";
+import { siteUrl, siteName, homeTitle, homeDescription } from "@/lib/site";
+import FacebookPixel from "@/components/FacebookPixel";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,10 +20,38 @@ const instrumentSerif = Instrument_Serif({
   subsets: ["latin"],
 });
 
+// Site-wide defaults. Pages override title/description/canonical with their own
+// values; a future page exporting `title: "Pricing"` renders "Pricing | BM Automate".
 export const metadata = {
-  title: "BM Automate — Web, App & AI Automation Studio",
-  description:
-    "BM Automate builds web platforms, mobile apps, custom software and AI automation for growing businesses. Fixed pricing, senior hands on every build.",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: homeTitle,
+    template: `%s | ${siteName}`,
+  },
+  description: homeDescription,
+  applicationName: siteName,
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  openGraph: {
+    type: "website",
+    siteName,
+    locale: "en_US",
+    title: homeTitle,
+    description: homeDescription,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: homeTitle,
+    description: homeDescription,
+  },
 };
 
 export default function RootLayout({ children }) {
@@ -30,7 +60,10 @@ export default function RootLayout({ children }) {
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        {children}
+        <FacebookPixel />
+      </body>
     </html>
   );
 }

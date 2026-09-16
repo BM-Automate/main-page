@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { PhoneInput } from "react-international-phone";
+import { trackEvent } from "@/lib/fbpixel";
 
 const categories = [
   "Web Platform",
@@ -50,6 +51,8 @@ export default function Contact() {
         throw new Error(data.error || "Something went wrong. Please try again.");
       }
 
+      // Only the category is sent — never the visitor's name, email or phone.
+      trackEvent("Lead", { content_category: form.category });
       setSent(true);
     } catch (err) {
       setError(err.message);
