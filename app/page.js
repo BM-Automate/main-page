@@ -10,6 +10,7 @@ import Testimonials from "@/components/Testimonials";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import { siteName, homeTitle, homeDescription } from "@/lib/site";
+import { JsonLd, servicesJsonLd } from "@/lib/structured-data";
 
 export const metadata = {
   title: { absolute: homeTitle },
@@ -35,6 +36,7 @@ export const metadata = {
 export default function Home() {
   return (
     <>
+      <JsonLd data={servicesJsonLd} />
       <Header />
       <main>
         <Hero />

@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
 
 const projects = [
@@ -11,18 +12,18 @@ const projects = [
     image: "/work/digital-classroom-insights.png",
     alt: "Digital Classroom Insights dashboard showing real-time student engagement analytics from on-device emotion AI",
     aspect: "1749/604",
-    tech: ["Python", "TensorFlow.js", "WebRTC", "Custom ML Model"],
-    link: "https://www.dcistudents.app/",
+    tech: ["TensorFlow.js", "WebRTC", "Node.js", "PostgreSQL"],
+    link: "/work/digital-classroom-insights",
   },
   {
     title: "Woodsnery",
-    desc: "E-commerce storefront for a custom furniture brand — doors, interiors, wall paneling and shelving, built to convert. A Node.js and MongoDB service handles custom quote requests and live inventory sync behind the Shopify storefront, with SSL encryption and PCI-compliant checkout throughout.",
+    desc: "Full-stack e-commerce platform for a custom furniture, doors and interiors brand — a fully custom Next.js build, not a Shopify theme. Custom admin panel, dynamic categories and attribute filters, fixed-price and Request-a-Quote selling, plus 2FA email verification and CAPTCHA protection throughout.",
     metric: "Live storefront",
     image: "/work/woodsnery.png",
     alt: "Woodsnery e-commerce storefront for custom doors, interiors and wall paneling",
     aspect: "1656/757",
-    tech: ["Shopify", "Liquid", "Node.js", "MongoDB", "JavaScript"],
-    link: "https://www.woodnery.store",
+    tech: ["Next.js", "React", "Node.js", "MongoDB Atlas", "Cloudflare R2"],
+    link: "/work/woodsnery",
   },
   {
     title: "AI Admin Panel Builder",
@@ -49,46 +50,29 @@ export default function Work() {
 
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {projects.map((p, i) => {
-            const CardTag = p.link ? motion.a : motion.div;
-            const linkProps = p.link
-              ? { href: p.link, target: "_blank", rel: "noopener noreferrer" }
-              : {};
-            return (
-              <CardTag
-                key={p.title}
-                {...linkProps}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                whileHover={{ y: -8 }}
-                className="group relative block overflow-hidden rounded-2xl border border-white/10 bg-[#161b26] transition-all duration-300 hover:border-cyan-400/40 hover:shadow-[0_0_40px_-12px_rgba(34,211,238,0.35)]"
-              >
-                {p.image ? (
-                  <div
-                    className="relative w-full overflow-hidden bg-black"
-                    style={{ aspectRatio: p.aspect }}
-                  >
-                    <Image
-                      src={p.image}
-                      alt={p.alt}
-                      fill
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
-                    />
-                    {p.link && (
-                      <>
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/0 to-black/0 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                        <span className="absolute bottom-3 left-4 flex translate-y-2 items-center gap-1.5 text-[13px] font-semibold text-white opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-                          Visit Live Site
-                          <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
-                        </span>
-                      </>
-                    )}
-                  </div>
-                ) : (
-                  <div className={`h-40 bg-gradient-to-br ${p.gradient} opacity-80`} />
-                )}
+            const cardContent = (
+              <>
+                <div
+                  className="relative w-full overflow-hidden bg-black"
+                  style={{ aspectRatio: p.aspect }}
+                >
+                  <Image
+                    src={p.image}
+                    alt={p.alt}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+                  />
+                  {p.link && (
+                    <>
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/0 to-black/0 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                      <span className="absolute bottom-3 left-4 flex translate-y-2 items-center gap-1.5 text-[13px] font-semibold text-white opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                        View Case Study
+                        <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+                      </span>
+                    </>
+                  )}
+                </div>
                 <div className="p-5">
                   <h3 className="mb-1.5 text-[16.5px] font-bold text-white">{p.title}</h3>
                   <p className="mb-3 text-[14px] leading-relaxed text-gray-400">{p.desc}</p>
@@ -110,7 +94,27 @@ export default function Work() {
                     {p.metric}
                   </span>
                 </div>
-              </CardTag>
+              </>
+            );
+
+            return (
+              <motion.div
+                key={p.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                whileHover={{ y: -8 }}
+                className="group relative overflow-hidden rounded-2xl border border-white/10 bg-[#161b26] transition-all duration-300 hover:border-cyan-400/40 hover:shadow-[0_0_40px_-12px_rgba(34,211,238,0.35)]"
+              >
+                {p.link ? (
+                  <Link href={p.link} className="block">
+                    {cardContent}
+                  </Link>
+                ) : (
+                  cardContent
+                )}
+              </motion.div>
             );
           })}
         </div>

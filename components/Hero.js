@@ -45,9 +45,12 @@ export default function Hero() {
       />
 
       <div className="relative mx-auto grid max-w-6xl grid-cols-1 items-center gap-16 px-6 lg:grid-cols-[1.1fr_0.9fr]">
+        {/* The H1 and intro paragraph are the LCP candidates, so they slide in
+            without fading: starting at opacity 0 would keep them invisible in the
+            server HTML until hydration and delay Largest Contentful Paint. */}
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ y: 24 }}
+          animate={{ y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
           <motion.p
@@ -59,16 +62,16 @@ export default function Hero() {
             Web · App · AI Automation Studio
           </motion.p>
           <motion.h1
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ y: 16 }}
+            animate={{ y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-[32px] font-extrabold leading-tight tracking-tight text-white sm:text-[42px] lg:text-[52px]"
           >
             Software built to feel as good as it performs.
           </motion.h1>
           <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ y: 16 }}
+            animate={{ y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             className="mt-6 max-w-lg text-[17px] text-gray-400"
           >

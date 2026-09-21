@@ -1,14 +1,37 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { motion, AnimatePresence, useScroll, useSpring } from "framer-motion";
 
+// Paths are "/#section" (not "#section") so the links still work when this
+// header renders on a subpage like /services/ai-automation — Next.js
+// navigates home first, then the browser scrolls to the hash.
 const links = [
-  { href: "#services", label: "Services" },
-  { href: "#work", label: "Work" },
-  { href: "#process", label: "Process" },
-  { href: "#testimonials", label: "Testimonials" },
-  { href: "#contact", label: "Contact" },
+  {
+    href: "/#services",
+    label: "Services",
+    children: [
+      { href: "/services/ai-automation", label: "AI Automation" },
+      { href: "/services/web-development", label: "Web Development" },
+      { href: "/services/mobile-app-development", label: "Mobile App Development" },
+      { href: "/services/custom-software", label: "Custom Software" },
+      { href: "/services/ui-ux-design", label: "UI/UX Design" },
+      { href: "/services/ecommerce-stores", label: "E-commerce Stores" },
+    ],
+  },
+  {
+    href: "/#work",
+    label: "Work",
+    children: [
+      { href: "/work/woodsnery", label: "Woodsnery" },
+      { href: "/work/digital-classroom-insights", label: "Digital Classroom Insights" },
+    ],
+  },
+  { href: "/#process", label: "Process" },
+  { href: "/#testimonials", label: "Testimonials" },
+  { href: "/blog", label: "Blog" },
+  { href: "/contact", label: "Contact" },
 ];
 
 export default function Header() {
@@ -48,28 +71,28 @@ export default function Header() {
           />
 
           <div className="mx-auto flex max-w-6xl items-center justify-between gap-6 px-6 py-4">
-            <a href="#home" className="flex items-center gap-2.5 font-extrabold tracking-wide text-white">
+            <Link href="/" className="flex items-center gap-2.5 font-extrabold tracking-wide text-white">
               <span className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-cyan-400 to-white text-sm text-black">
                 BM
               </span>
               <span className="text-[15px]">AUTOMATE</span>
-            </a>
+            </Link>
 
             <nav className="hidden gap-8 md:flex">
               {links.map((link) => (
-                <a
+                <Link
                   key={link.href}
                   href={link.href}
                   className="text-[14.5px] font-medium text-gray-400 transition-colors hover:text-white"
                 >
                   {link.label}
-                </a>
+                </Link>
               ))}
             </nav>
 
             <div className="flex items-center gap-4">
               <motion.a
-                href="#contact"
+                href="/#contact"
                 whileHover={{ scale: 1.05, y: -1 }}
                 whileTap={{ scale: 0.96 }}
                 className="hidden rounded-full bg-gradient-to-r from-cyan-400 to-white px-5 py-2.5 text-[14.5px] font-semibold text-black sm:inline-flex"
@@ -108,22 +131,37 @@ export default function Header() {
               className="absolute left-4 right-4 top-[calc(100%+10px)] flex flex-col gap-1 rounded-2xl border border-white/10 bg-[#0d1117]/95 p-4 shadow-xl backdrop-blur-md md:hidden"
             >
               {links.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setOpen(false)}
-                  className="rounded-lg px-2 py-2 text-[15px] font-medium text-gray-300 transition-colors hover:bg-white/5"
-                >
-                  {link.label}
-                </a>
+                <div key={link.href}>
+                  <Link
+                    href={link.href}
+                    onClick={() => setOpen(false)}
+                    className="block rounded-lg px-2 py-2 text-[15px] font-medium text-gray-300 transition-colors hover:bg-white/5"
+                  >
+                    {link.label}
+                  </Link>
+                  {link.children && (
+                    <div className="ml-3 flex flex-col gap-0.5 border-l border-white/10 pl-3">
+                      {link.children.map((child) => (
+                        <Link
+                          key={child.href}
+                          href={child.href}
+                          onClick={() => setOpen(false)}
+                          className="rounded-lg px-2 py-1.5 text-[13.5px] text-gray-400 transition-colors hover:bg-white/5 hover:text-white"
+                        >
+                          {child.label}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
               ))}
-              <a
-                href="#contact"
+              <Link
+                href="/#contact"
                 onClick={() => setOpen(false)}
                 className="mt-2 rounded-full bg-gradient-to-r from-cyan-400 to-white px-5 py-2.5 text-center text-[14.5px] font-semibold text-black"
               >
                 Book a Call
-              </a>
+              </Link>
             </motion.nav>
           )}
         </AnimatePresence>
