@@ -1,4 +1,5 @@
 import Link from "next/link";
+import SocialLinks from "./SocialLinks";
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -17,6 +18,9 @@ export default function Footer() {
             <p className="mt-3.5 max-w-[260px] text-[14px] text-gray-400">
               Web, app and AI automation studio helping businesses build software that works.
             </p>
+            <div className="mt-5">
+              <SocialLinks />
+            </div>
           </div>
 
           <div>
@@ -52,9 +56,12 @@ export default function Footer() {
           </div>
         </div>
 
-        <p className="pt-6 text-center text-[13.5px] text-gray-500">
-          © {year} BM Automate. All rights reserved.
-        </p>
+        <div className="pt-8 text-center">
+          <div className="mx-auto mb-6 h-px w-24 bg-gradient-to-r from-transparent via-cyan-400/50 to-transparent" />
+          <p className="text-[13.5px] text-gray-500">
+            © {year} BM Automate. All rights reserved.
+          </p>
+        </div>
       </div>
     </footer>
   );
