@@ -17,7 +17,7 @@ const platforms = [
   },
   {
     name: "Facebook",
-    href: "https://www.facebook.com/profile.php?id=61594439213639",
+    href: "https://www.facebook.com/bmautomate",
     icon: (
       <svg viewBox="0 0 24 24" fill="none">
         <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.6" />
@@ -30,7 +30,7 @@ const platforms = [
   },
   {
     name: "LinkedIn",
-    href: "https://www.linkedin.com/company/145188924",
+    href: "https://www.linkedin.com/company/bm-automate",
     icon: (
       <svg viewBox="0 0 24 24" fill="none">
         <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.6" />
