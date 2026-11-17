@@ -1,5 +1,11 @@
 import Link from "next/link";
 import SocialLinks from "./SocialLinks";
+import {
+  contactEmail,
+  contactPhone,
+  contactPhoneDisplay,
+  whatsappUrl,
+} from "@/lib/site";
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -49,9 +55,9 @@ export default function Footer() {
           <div>
             <h2 className="mb-4 text-[14px] font-bold text-white">Get In Touch</h2>
             <ul className="space-y-2.5 text-[14px] text-gray-400">
-              <li><a href="mailto:contact@bmautomate.com" className="transition-colors hover:text-cyan-300">contact@bmautomate.com</a></li>
-              <li><a href="tel:+923432647498" className="transition-colors hover:text-cyan-300">+92 343 2647498</a></li>
-              <li><a href="https://wa.me/923432647498" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-cyan-300">WhatsApp</a></li>
+              <li><a href={`mailto:${contactEmail}`} className="transition-colors hover:text-cyan-300">{contactEmail}</a></li>
+              <li><a href={`tel:${contactPhone}`} className="transition-colors hover:text-cyan-300">{contactPhoneDisplay}</a></li>
+              <li><a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-cyan-300">WhatsApp</a></li>
             </ul>
           </div>
         </div>

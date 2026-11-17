@@ -4,6 +4,12 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { PhoneInput } from "react-international-phone";
 import { trackEvent } from "@/lib/fbpixel";
+import {
+  contactEmail,
+  contactPhone,
+  contactPhoneDisplay,
+  whatsappUrl,
+} from "@/lib/site";
 
 const categories = [
   "Web Platform",
@@ -106,19 +112,19 @@ export default function Contact() {
 
             <div className="max-w-md border-t border-white/10">
               <a
-                href="mailto:contact@bmautomate.com"
+                href={`mailto:${contactEmail}`}
                 className="block border-b border-white/10 py-4 text-[15px] font-medium text-white transition-colors hover:text-cyan-300"
               >
-                contact@bmautomate.com
+                {contactEmail}
               </a>
               <a
-                href="tel:+923432647498"
+                href={`tel:${contactPhone}`}
                 className="block border-b border-white/10 py-4 text-[15px] font-medium text-white transition-colors hover:text-cyan-300"
               >
-                +92 343 2647498
+                {contactPhoneDisplay}
               </a>
               <a
-                href="https://wa.me/923432647498"
+                href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block py-4 text-[15px] font-medium text-white transition-colors hover:text-cyan-300"
